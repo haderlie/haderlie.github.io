@@ -8,25 +8,25 @@
   <style>
     @font-face {
       font-family: 'iA Writer Duo S';
-      src: url('https://raw.githubusercontent.com/iaolo/iA-Fonts/master/iA%20Writer%20Duo/Static/iAWriterDuoS-Regular.woff2') format('woff2');
+      src: url('fonts/iAWriterDuoS-Regular.woff2') format('woff2');
       font-weight: 400;
       font-style: normal;
     }
     @font-face {
       font-family: 'iA Writer Duo S';
-      src: url('https://raw.githubusercontent.com/iaolo/iA-Fonts/master/iA%20Writer%20Duo/Static/iAWriterDuoS-Italic.woff2') format('woff2');
+      src: url('fonts/iAWriterDuoS-Italic.woff2') format('woff2');
       font-weight: 400;
       font-style: italic;
     }
     @font-face {
       font-family: 'iA Writer Duo S';
-      src: url('https://raw.githubusercontent.com/iaolo/iA-Fonts/master/iA%20Writer%20Duo/Static/iAWriterDuoS-Bold.woff2') format('woff2');
+      src: url('fonts/iAWriterDuoS-Bold.woff2') format('woff2');
       font-weight: 700;
       font-style: normal;
     }
     @font-face {
       font-family: 'iA Writer Duo S';
-      src: url('https://raw.githubusercontent.com/iaolo/iA-Fonts/master/iA%20Writer%20Duo/Static/iAWriterDuoS-BoldItalic.woff2') format('woff2');
+      src: url('fonts/iAWriterDuoS-BoldItalic.woff2') format('woff2');
       font-weight: 700;
       font-style: italic;
     }
@@ -37,11 +37,10 @@
       --bg:        #faf9f7;
       --text:      #1a1a18;
       --muted:     #6b6b67;
-      --rule:      #dddbd6;
       --link:      #2a52a0;
       --link-hover:#1a3870;
       --max-width: 640px;
-      --font:      'iA Writer Duo S', 'Georgia', serif;
+      --font:      'iA Writer Duo S', monospace;
       --lh:        1.7;
       --size:      17px;
     }
@@ -96,12 +95,6 @@
     }
     a:hover { color: var(--link-hover); }
 
-    hr {
-      border: none;
-      border-top: 1px solid var(--rule);
-      margin: 0;
-    }
-
     header { margin-bottom: 2rem; }
 
     .subtitle {
@@ -116,19 +109,13 @@
     }
 
     .pub-list li {
-      border-bottom: 1px solid var(--rule);
+      padding: 0.6rem 0;
     }
 
-    .pub-list li:first-child {
-      border-top: 1px solid var(--rule);
-    }
-
-    /* The always-visible row */
     .pub-row {
       display: flex;
       align-items: baseline;
       gap: 0.5rem;
-      padding: 0.6rem 0;
       cursor: pointer;
       user-select: none;
     }
@@ -148,9 +135,7 @@
       transform: rotate(90deg);
     }
 
-    .pub-content {
-      flex: 1;
-    }
+    .pub-content { flex: 1; }
 
     .pub-title {
       color: var(--link);
@@ -167,17 +152,31 @@
       line-height: 1.4;
     }
 
-    /* Abstract drawer */
     .pub-abstract {
       display: none;
-      padding: 0 0 0.8rem 1.4rem;
+      padding: 0.4rem 0 0.2rem 1.4rem;
       font-size: 0.88rem;
       line-height: 1.6;
       color: var(--muted);
     }
 
-    .pub-abstract.open {
-      display: block;
+    .pub-abstract.open { display: block; }
+
+    /* ── Works in progress ── */
+    .wip-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .wip-list li {
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .wip-coauthor {
+      color: var(--muted);
+      font-size: 0.88rem;
     }
 
     /* ── Teaching list ── */
@@ -188,12 +187,7 @@
 
     .course-list li {
       padding: 0.5rem 0;
-      border-bottom: 1px solid var(--rule);
       font-size: 0.95rem;
-    }
-
-    .course-list li:first-child {
-      border-top: 1px solid var(--rule);
     }
 
     footer {
@@ -213,8 +207,6 @@
     <h1>Derek Christian Haderlie</h1>
     <p class="subtitle">Assistant Professor of Philosophy, Brigham Young University</p>
   </header>
-
-  <hr>
 
   <!-- BIO -->
   <section aria-label="About">
@@ -241,8 +233,8 @@
       with <a href="https://sites.google.com/view/ryanwdavis/home">Ryan Davis</a>.
     </p>
     <p>
-      You can find my <a href="https://drive.google.com/file/d/163nL_7YrFwTs6LOzK_6SHOPf6nj2vp0i/view?usp=sharing">CV here</a>. The best way to reach me
-      is at derek&nbsp;[dot]&nbsp;haderlie&nbsp;[at]&nbsp;gmail.
+      You can find my <a href="https://drive.google.com/file/d/163nL_7YrFwTs6LOzK_6SHOPf6nj2vp0i/view?usp=sharing">CV here</a>.
+      The best way to reach me is at derek&nbsp;[dot]&nbsp;haderlie&nbsp;[at]&nbsp;gmail.
     </p>
   </section>
 
@@ -270,7 +262,7 @@
         <div class="pub-row" onclick="toggleAbstract(this)">
           <span class="pub-toggle">▶</span>
           <div class="pub-content">
-            <div><a class="pub-title" href="https://doi.org/10.1093/pq/pqae073" onclick="event.stopPropagation()">Grounding Legalism</a> <span style="color:var(--muted);font-size:0.88rem">(with Jon Erling Litland)</span></div>
+            <div><a class="pub-title" href="https://doi.org/10.1093/pq/pqae073" onclick="event.stopPropagation()">Grounding Legalism</a> <span class="wip-coauthor">(with Jon Erling Litland)</span></div>
             <div class="pub-meta"><em>Philosophical Quarterly</em> 76 (1): 196–218. 2026.</div>
           </div>
         </div>
@@ -296,7 +288,7 @@
         <div class="pub-row" onclick="toggleAbstract(this)">
           <span class="pub-toggle">▶</span>
           <div class="pub-content">
-            <div><a class="pub-title" href="https://philpapers.org/rec/HADAGT" onclick="event.stopPropagation()">Against Grounding Trinitarianism</a> <span style="color:var(--muted);font-size:0.88rem">(with Taylor-Grey Miller)</span></div>
+            <div><a class="pub-title" href="https://philpapers.org/rec/HADAGT" onclick="event.stopPropagation()">Against Grounding Trinitarianism</a> <span class="wip-coauthor">(with Taylor-Grey Miller)</span></div>
             <div class="pub-meta"><em>Faith and Philosophy</em>. Forthcoming.</div>
           </div>
         </div>
@@ -309,7 +301,7 @@
         <div class="pub-row" onclick="toggleAbstract(this)">
           <span class="pub-toggle">▶</span>
           <div class="pub-content">
-            <div><a class="pub-title" href="https://doi.org/10.1017/S0034412523001117" onclick="event.stopPropagation()">Evil and Embodiment: Towards a Latter-day Saint Non-Identity Theodicy</a> <span style="color:var(--muted);font-size:0.88rem">(with Taylor-Grey Miller)</span></div>
+            <div><a class="pub-title" href="https://doi.org/10.1017/S0034412523001117" onclick="event.stopPropagation()">Evil and Embodiment: Towards a Latter-day Saint Non-Identity Theodicy</a> <span class="wip-coauthor">(with Taylor-Grey Miller)</span></div>
             <div class="pub-meta"><em>Religious Studies</em> 61 (1): 93–105. 2025.</div>
           </div>
         </div>
@@ -322,7 +314,7 @@
         <div class="pub-row" onclick="toggleAbstract(this)">
           <span class="pub-toggle">▶</span>
           <div class="pub-content">
-            <div><a class="pub-title" href="https://doi.org/10.1080/24740500.2021.2000193" onclick="event.stopPropagation()">Faith: How to be Partial while Respecting the Evidence</a> <span style="color:var(--muted);font-size:0.88rem">(with Taylor-Grey Miller)</span></div>
+            <div><a class="pub-title" href="https://doi.org/10.1080/24740500.2021.2000193" onclick="event.stopPropagation()">Faith: How to be Partial while Respecting the Evidence</a> <span class="wip-coauthor">(with Taylor-Grey Miller)</span></div>
             <div class="pub-meta"><em>Australasian Philosophical Review</em> 5 (1): 67–72. 2021.</div>
           </div>
         </div>
@@ -335,7 +327,7 @@
         <div class="pub-row" onclick="toggleAbstract(this)">
           <span class="pub-toggle">▶</span>
           <div class="pub-content">
-            <div><a class="pub-title" href="https://doi.org/10.12978/jat.2020-8.120817070004" onclick="event.stopPropagation()">Sider's Puzzle and the Mormon Afterlife</a> <span style="color:var(--muted);font-size:0.88rem">(with Taylor-Grey Miller)</span></div>
+            <div><a class="pub-title" href="https://doi.org/10.12978/jat.2020-8.120817070004" onclick="event.stopPropagation()">Sider's Puzzle and the Mormon Afterlife</a> <span class="wip-coauthor">(with Taylor-Grey Miller)</span></div>
             <div class="pub-meta"><em>Journal of Analytic Theology</em> 8 (1): 131–151. 2020.</div>
           </div>
         </div>
@@ -362,6 +354,46 @@
         </div>
       </li>
 
+    </ul>
+  </section>
+
+  <!-- WORKS IN PROGRESS -->
+  <section aria-label="Works in Progress">
+    <h2>Works in Progress</h2>
+
+    <h3>Under Review</h3>
+    <ul class="wip-list">
+      <li>
+        A paper on the connection problem for grounding
+        <span class="wip-coauthor">(with Jon Erling Litland and Taylor-Grey Miller)</span>
+      </li>
+      <li>
+        A paper on the prospects for grounding modality in essential truths
+      </li>
+    </ul>
+
+    <h3>In Progress</h3>
+    <ul class="wip-list">
+      <li>
+        A paper exploring the prospects for modal voluntarism — the view that necessities depend on God's contingent creative activities
+        <span class="wip-coauthor">(with Taylor-Grey Miller and Slater Simek)</span>
+      </li>
+      <li>
+        A paper developing an argument for moral particularism within a ground-theoretic context
+      </li>
+      <li>
+        A paper on the nature of generative relations
+      </li>
+      <li>
+        A paper defending non-naturalism from an objection that non-naturalists are guilty of thinking bad thoughts
+        <span class="wip-coauthor">(with Ryan Davis)</span>
+      </li>
+      <li>
+        A paper exploring the epistemology of moral expressivism
+      </li>
+      <li>
+        A paper exploring the prospects for a sui generis notion of aesthetic obligation
+      </li>
     </ul>
   </section>
 
