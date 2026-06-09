@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Derek Christian Haderlie</title>
+
+  <style>
+    @font-face {
+      font-family: 'iA Writer Duo S';
+      src: url('https://raw.githubusercontent.com/iaolo/iA-Fonts/master/iA%20Writer%20Duo/Static/iAWriterDuoS-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'iA Writer Duo S';
+      src: url('https://raw.githubusercontent.com/iaolo/iA-Fonts/master/iA%20Writer%20Duo/Static/iAWriterDuoS-Italic.woff2') format('woff2');
+      font-weight: 400;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: 'iA Writer Duo S';
+      src: url('https://raw.githubusercontent.com/iaolo/iA-Fonts/master/iA%20Writer%20Duo/Static/iAWriterDuoS-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'iA Writer Duo S';
+      src: url('https://raw.githubusercontent.com/iaolo/iA-Fonts/master/iA%20Writer%20Duo/Static/iAWriterDuoS-BoldItalic.woff2') format('woff2');
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #faf9f7;
+      --text:      #1a1a18;
+      --muted:     #6b6b67;
+      --rule:      #dddbd6;
+      --link:      #2a52a0;
+      --link-hover:#1a3870;
+      --max-width: 640px;
+      --font:      'iA Writer Duo S', 'Georgia', serif;
+      --lh:        1.7;
+      --size:      17px;
+    }
+
+    html {
+      font-size: var(--size);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      font-family: var(--font);
+      line-height: var(--lh);
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 1.5rem 6rem;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.15rem;
+    }
+
+    h2 {
+      font-size: 0.8rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 3rem 0 1rem;
+    }
+
+    h3 {
+      font-size: 0.75rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin: 1.75rem 0 0.75rem;
+    }
+
+    p { margin-bottom: 1em; }
+    p:last-child { margin-bottom: 0; }
+
+    a {
+      color: var(--link);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+    a:hover { color: var(--link-hover); }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    header { margin-bottom: 2rem; }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── Publication list ── */
+    .pub-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .pub-list li {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .pub-list li:first-child {
+      border-top: 1px solid var(--rule);
+    }
+
+    /* The always-visible row */
+    .pub-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      padding: 0.6rem 0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .pub-row:hover .pub-title { color: var(--link-hover); }
+
+    .pub-toggle {
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: var(--muted);
+      width: 0.9rem;
+      text-align: center;
+      transition: transform 0.15s ease;
+    }
+
+    .pub-toggle.open {
+      transform: rotate(90deg);
+    }
+
+    .pub-content {
+      flex: 1;
+    }
+
+    .pub-title {
+      color: var(--link);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .pub-meta {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    /* Abstract drawer */
+    .pub-abstract {
+      display: none;
+      padding: 0 0 0.8rem 1.4rem;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .pub-abstract.open {
+      display: block;
+    }
+
+    /* ── Teaching list ── */
+    .course-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .course-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.95rem;
+    }
+
+    .course-list li:first-child {
+      border-top: 1px solid var(--rule);
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 2.5rem 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Derek Christian Haderlie</h1>
+    <p class="subtitle">Assistant Professor of Philosophy, Brigham Young University</p>
+  </header>
+
+  <hr>
+
+  <!-- BIO -->
+  <section aria-label="About">
+    <h2>About</h2>
+    <p>
+      I work on issues surrounding metaphysical explanation (grounding), often
+      with an eye to metaethical issues. Aside from metaphysics and metaethics,
+      I also have an interest in philosophy of religion.
+    </p>
+    <p>
+      Before coming to BYU, I was a PhD student at the University of Texas at
+      Austin, where I worked with
+      <a href="https://www.jonerlinglitland.com/">Jon Litland</a> and
+      <a href="https://en.wikipedia.org/wiki/Jonathan_Dancy">Jonathan Dancy</a>.
+      My dissertation was on the metaphysics of moral laws. Before that, I
+      completed an M.A. at Virginia Tech, working with
+      <a href="https://sites.google.com/site/drtristram/">Tristram McPherson</a>,
+      and prior to that I completed an undergraduate degree in English Literature
+      at BYU-Idaho.
+    </p>
+    <p>
+      I co-organize
+      <a href="#">Metaethics in the Mountains</a>
+      with <a href="https://sites.google.com/view/ryanwdavis/home">Ryan Davis</a>.
+    </p>
+    <p>
+      You can find my <a href="https://drive.google.com/file/d/163nL_7YrFwTs6LOzK_6SHOPf6nj2vp0i/view?usp=sharing">CV here</a>. The best way to reach me
+      is at derek&nbsp;[dot]&nbsp;haderlie&nbsp;[at]&nbsp;gmail.
+    </p>
+  </section>
+
+  <!-- RESEARCH -->
+  <section aria-label="Research">
+    <h2>Research</h2>
+
+    <h3>Articles</h3>
+    <ul class="pub-list">
+
+      <li>
+        <div class="pub-row" onclick="toggleAbstract(this)">
+          <span class="pub-toggle">▶</span>
+          <div class="pub-content">
+            <div><a class="pub-title" href="https://doi.org/10.1111/nous.70046" onclick="event.stopPropagation()">Against Propositionalism about Moral Laws</a></div>
+            <div class="pub-meta"><em>Noûs</em>. Forthcoming. 2026.</div>
+          </div>
+        </div>
+        <div class="pub-abstract">
+          Propositionalism, the view that moral laws are propositional, is nearly a truism in metaethics. Against this, I argue that those who hold that moral laws play an ineliminable role in moral explanation should reject it. If laws are to play such a role, they must make what explains relevant to what is explained. Yet if laws are themselves propositions, this requirement yields an explanatory regress. I develop a relational alternative according to which moral laws are generative relations rather than propositions. This relational account avoids the regress, preserves the explanatory role of moral laws, and has significant implications for metaethical theory. In particular, I show that it yields a non-trivial formulation of non-naturalism and clarifies the relation between moral and metaphysical explanation.
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-row" onclick="toggleAbstract(this)">
+          <span class="pub-toggle">▶</span>
+          <div class="pub-content">
+            <div><a class="pub-title" href="https://doi.org/10.1093/pq/pqae073" onclick="event.stopPropagation()">Grounding Legalism</a> <span style="color:var(--muted);font-size:0.88rem">(with Jon Erling Litland)</span></div>
+            <div class="pub-meta"><em>Philosophical Quarterly</em> 76 (1): 196–218. 2026.</div>
+          </div>
+        </div>
+        <div class="pub-abstract">
+          Many authors have proposed that grounding is closely related to metaphysical laws. However, we argue that no existing theory of metaphysical laws is sufficiently general. In this paper, we develop a general theory of grounding laws, proposing that they are generative relations between pluralities of propositions and propositions. We develop the account in an essentialist language; this allows us to state precisely the sense in which grounding might be reduced to laws. We then put the theory to use in showing how moral laws can play a role in grounding particular moral facts, in defending monism about ground, and in showing in what sense there is no gap between the grounds and the grounded. Finally, we make a novel proposal about what grounds facts about ground.
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-row" onclick="toggleAbstract(this)">
+          <span class="pub-toggle">▶</span>
+          <div class="pub-content">
+            <div><a class="pub-title" href="https://doi.org/10.1007/s10670-024-00804-9" onclick="event.stopPropagation()">How to be a Monist about Ground: A Guide for Pluralists</a></div>
+            <div class="pub-meta"><em>Erkenntnis</em> 90 (6): 2261–2278. 2025.</div>
+          </div>
+        </div>
+        <div class="pub-abstract">
+          Is there one univocal or generic notion of ground? Monists answer yes, while pluralists answer no. Pluralists argue that monism cannot meet plausible constraints on an adequate theory of ground. My aim in this paper is to articulate a monist theory of ground that can satisfy the pluralist constraints in a way that leaves the pluralists with no reasons not to endorse the monist picture of ground. I do this by adopting a tripartite conception of ground and then showing that it has the resources to vindicate monism while satisfying the pluralist constraints on a theory of ground.
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-row" onclick="toggleAbstract(this)">
+          <span class="pub-toggle">▶</span>
+          <div class="pub-content">
+            <div><a class="pub-title" href="https://philpapers.org/rec/HADAGT" onclick="event.stopPropagation()">Against Grounding Trinitarianism</a> <span style="color:var(--muted);font-size:0.88rem">(with Taylor-Grey Miller)</span></div>
+            <div class="pub-meta"><em>Faith and Philosophy</em>. Forthcoming.</div>
+          </div>
+        </div>
+        <div class="pub-abstract">
+          Christian metaphysics advances a surprising thesis about the nature of fundamental reality: the fundamental level of reality is triune (in some sense). Certain Christian traditions maintain that there is a hierarchical structure within the trinity, and recently it has been proposed that such relations should be explicated in terms of the notion of metaphysical ground. This paper is a systematic exploration of the viability of a ground theoretic account of this conception of fundamental reality. We argue for two claims. First, the only adequate ground theoretic accounts must involve laws of ground and must take them to play distinctive explanatory roles. Second, taking the laws of ground to play these distinctive explanatory roles raises a dilemma: either fundamental reality isn't triune in the way demanded by the Christian account, or it makes poor predictions about the modal status of certain facts about the laws of ground.
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-row" onclick="toggleAbstract(this)">
+          <span class="pub-toggle">▶</span>
+          <div class="pub-content">
+            <div><a class="pub-title" href="https://doi.org/10.1017/S0034412523001117" onclick="event.stopPropagation()">Evil and Embodiment: Towards a Latter-day Saint Non-Identity Theodicy</a> <span style="color:var(--muted);font-size:0.88rem">(with Taylor-Grey Miller)</span></div>
+            <div class="pub-meta"><em>Religious Studies</em> 61 (1): 93–105. 2025.</div>
+          </div>
+        </div>
+        <div class="pub-abstract">
+          We offer an account of the metaphysics of persons rooted in Latter-day Saint scripture that vindicates the essentiality of origins. We then give theological support for the claim that prospects for the success of God's soul-making project are bound up in God creating particular persons. We observe that these persons would not have existed were it not for the occurrence of a variety of evils (of even the worst kinds), and we conclude that Latter-day Saint theology has the resources to endorse a strong soul-making non-identity theodicy. We then introduce two complications rooted in the problem of horrendous evils, and show that by attending to important structural features of a post-mortem, pre-eschatological state called the spirit world, Latter-day Saints can ameliorate these concerns.
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-row" onclick="toggleAbstract(this)">
+          <span class="pub-toggle">▶</span>
+          <div class="pub-content">
+            <div><a class="pub-title" href="https://doi.org/10.1080/24740500.2021.2000193" onclick="event.stopPropagation()">Faith: How to be Partial while Respecting the Evidence</a> <span style="color:var(--muted);font-size:0.88rem">(with Taylor-Grey Miller)</span></div>
+            <div class="pub-meta"><em>Australasian Philosophical Review</em> 5 (1): 67–72. 2021.</div>
+          </div>
+        </div>
+        <div class="pub-abstract">
+          Some think that partiality is a normative requirement of faith. Katherine Dormandy disagrees, arguing that partiality runs afoul of epistemic norms that faith requires. We offer an account of how one can respect the partiality requirement while respecting the epistemic norms as well. Central to the account is the role that confrontation plays in negotiating faith relationships where one has damning evidence about the object of faith.
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-row" onclick="toggleAbstract(this)">
+          <span class="pub-toggle">▶</span>
+          <div class="pub-content">
+            <div><a class="pub-title" href="https://doi.org/10.12978/jat.2020-8.120817070004" onclick="event.stopPropagation()">Sider's Puzzle and the Mormon Afterlife</a> <span style="color:var(--muted);font-size:0.88rem">(with Taylor-Grey Miller)</span></div>
+            <div class="pub-meta"><em>Journal of Analytic Theology</em> 8 (1): 131–151. 2020.</div>
+          </div>
+        </div>
+        <div class="pub-abstract">
+          There is a puzzle about divine justice stemming from the fact that God seems required to judge on the basis of criteria that are vague. Justice is proportional; however, it seems God violates proportionality by sending those on the borderline of heaven to an eternity in hell. This is Ted Sider's problem of Hell and Vagueness. We show that this puzzle can be extended to Mormon theology and argue that Mormon theology has sufficient resources to reject proportionality as a constraint on divine judgment by adopting a nuanced version of universalism called escapism.
+        </div>
+      </li>
+
+    </ul>
+
+    <h3>Reviews</h3>
+    <ul class="pub-list">
+
+      <li>
+        <div class="pub-row" onclick="toggleAbstract(this)">
+          <span class="pub-toggle">▶</span>
+          <div class="pub-content">
+            <div><a class="pub-title" href="https://ndpr.nd.edu/reviews/god-knowledge-and-the-good/" onclick="event.stopPropagation()">Review of <em>God, Knowledge, and the Good</em>, by Linda Zagzebski</a></div>
+            <div class="pub-meta"><em>Notre Dame Philosophical Reviews</em>. 2022.</div>
+          </div>
+        </div>
+        <div class="pub-abstract">
+          A review of Linda Trinkaus Zagzebski's collected papers in the philosophy of religion, organized around eight themes: foreknowledge and fatalism; the problem of evil; death, hell, and the resurrection; God and morality; omnisubjectivity; the rationality of religious belief; rational religious belief, self-trust, and authority; and God, Trinity, and the metaphysics of modality.
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- TEACHING -->
+  <section aria-label="Teaching">
+    <h2>Teaching</h2>
+    <ul class="course-list">
+      <li>Metaphysics</li>
+      <li>Metaethics</li>
+      <li>Introductory Logic</li>
+      <li>Intermediate Logic</li>
+      <li>Advanced Logic</li>
+      <li>Introduction to Theoretical Philosophy</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Department of Philosophy &middot; Brigham Young University &middot; Provo, Utah</p>
+  </footer>
+
+  <script>
+    function toggleAbstract(row) {
+      const toggle = row.querySelector('.pub-toggle');
+      const abstract = row.nextElementSibling;
+      const isOpen = abstract.classList.contains('open');
+      abstract.classList.toggle('open', !isOpen);
+      toggle.classList.toggle('open', !isOpen);
+    }
+  </script>
+
+</body>
+</html>
