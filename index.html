@@ -171,8 +171,17 @@
 
     .wip-list li {
       padding: 0.5rem 0;
+      padding-left: 1.25rem;
       font-size: 0.95rem;
       line-height: 1.5;
+      position: relative;
+    }
+
+    .wip-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
     }
 
     .wip-coauthor {
@@ -362,8 +371,8 @@
         <div class="pub-row" onclick="toggleAbstract(this)">
           <span class="pub-toggle">▶</span>
           <div class="pub-content">
-            <div><a class="pub-title" href="https://drive.google.com/file/d/1XBO4Q_Cf6RbeaCUnNj2aha7y0bySRPG1/view?usp=sharing" onclick="event.stopPropagation()">Is God Subordinate to Law?</a></div>
-            <div class="pub-meta"><em>Contemporary Philosophy and the Latter-day Saint Tradition</em>. Routledge. Forthcoming.</div>
+            <div><a class="pub-title" href="https://www.taylorfrancis.com/chapters/oa-edit/10.4324/9781003649397-4/god-subordinate-law-derek-christian-haderlie?context=ubx&refId=1c9c1a47-c818-4d41-9093-fd2daea44c80" onclick="event.stopPropagation()">Is God Subordinate to Law?</a></div>
+            <div class="pub-meta"><em>Contemporary Philosophy and the Latter-day Saint Tradition</em>. Routledge. 2026.</div>
           </div>
         </div>
         <div class="pub-abstract">
@@ -405,6 +414,7 @@
       </li>
       <li>
         A paper on the prospects for grounding modality in essential truths
+        <span class="wip-coauthor">(with Taylor-Grey Miller)</span>
       </li>
     </ul>
 
